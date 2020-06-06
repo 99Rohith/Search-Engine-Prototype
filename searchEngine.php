@@ -13,11 +13,11 @@
             //connect to database
             $myPDO = new sqlite3('SearchEngineDB.sqlite');
             $keyword = strtolower($pieces[0]);
-            $q = "SELECT pid,url FROM Pages WHERE pid in(SELECT pid FROM Keywords WHERE keyword LIKE '%".$keyword."%' ";
+            $q = "SELECT pid,url FROM Pages WHERE pid in(SELECT pid FROM Keywords WHERE keyword LIKE '".$keyword."%' ";
             for($i=1;$i<count($pieces);$i++)
             {
                 $keyword = strtolower($pieces[$i]);
-                $q .= " OR keyword LIKE '%".$keyword."%' ";
+                $q .= " OR keyword LIKE '".$keyword."%' ";
             }
             $q .= ") ORDER BY newRank DESC; ";
             $result = $myPDO->query($q);
